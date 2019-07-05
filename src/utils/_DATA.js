@@ -2,7 +2,7 @@ let users = {
   ericmastro: {
     id: 'ericmastro',
     name: 'Eric Mastro',
-    avatarURL: ,
+    avatarURL: "../images/eric.jpg",
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionTwo',
@@ -14,7 +14,7 @@ let users = {
   brettfreeman: {
     id: 'brettfreeman',
     name: 'Brett Freeman',
-    avatarURL: ,
+    avatarURL: "../images/brett.jpg",
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -24,7 +24,7 @@ let users = {
   jasonlee: {
     id: 'jasonlee',
     name: 'Jason Lee',
-    avatarURL: ,
+    avatarURL: "../images/jason.jpg",
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
