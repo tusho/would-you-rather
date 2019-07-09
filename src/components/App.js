@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import NavBar from './navbar.js'
+import React, { Component } from 'react'
+import Navbar from './Navbar.js'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
+import Dashboard from './Dashboard.js'
 
 class App extends Component {
   componentDidMount() {
@@ -11,10 +12,20 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavBar />
+        <Navbar />
+        {this.props.loading === true
+          ? null
+          : <Dashboard />}
       </div>
     )
   }
 }
 
-export default connect()(App);
+// Render UI only once application has finished loading the initial data
+function mapStateToProps ({ authedUser }) {
+  return {
+    loading: authedUser === null
+  }
+}
+
+export default connect(mapStateToProps)(App)
