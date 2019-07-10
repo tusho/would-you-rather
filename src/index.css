@@ -19,3 +19,14 @@ code {
   padding-left:30px;
   padding-right:30px;
 }
+
+.question {
+  width: 100%;
+  max-width: 590px;
+  padding: 10px;
+  display: flex;
+  margin: 0 auto;
+  border: 1px solid #dad7d7;
+  border-radius: 3px;
+  cursor: pointer;
+}
