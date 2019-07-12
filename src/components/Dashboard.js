@@ -4,6 +4,7 @@ import Question from './Question.js'
 
 class Dashboard extends Component {
   render() {
+    const { users } = this.props
     return (
       <div>
         <h3 className='text-center'>Polls</h3>
@@ -18,6 +19,7 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps ({ questions }) {
+
   return {
     questionIds: Object.keys(questions)
       .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
