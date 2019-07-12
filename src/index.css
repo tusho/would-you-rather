@@ -30,3 +30,9 @@ code {
   border-radius: 3px;
   cursor: pointer;
 }
+
+.avatar {
+  height: 50px;
+  border-radius: 25px;
+  margin: 10px;
+}

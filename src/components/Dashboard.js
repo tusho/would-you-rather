@@ -9,7 +9,7 @@ class Dashboard extends Component {
         <h3 className='text-center'>Polls</h3>
         <ul className='list-unstyled'>
             {this.props.questionIds.map((id) => (
-                <Question id={id} />
+                <Question id={id}  key={id}/>
             ))}
         </ul>
       </div>
