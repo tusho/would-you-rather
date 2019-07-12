@@ -3,6 +3,7 @@ import Navbar from './Navbar.js'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Dashboard from './Dashboard.js'
+import LoadingBar from 'react-redux-loading-bar'
 
 class App extends Component {
   componentDidMount() {
@@ -13,6 +14,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar />
+        <LoadingBar />
         {this.props.loading === true
           ? null
           : <Dashboard />}
