@@ -1,8 +1,11 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux'
 
 class Navbar extends Component {
 
     render() {
+
+        const { authedUser } = this.props
         
         return (
             <div className="navbar navbar-expand-lg navbar-light bg-light">
@@ -19,9 +22,11 @@ class Navbar extends Component {
                     <li className="nav-item">
                         <a className="nav-link" href="#">Username</a>
                     </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">Log Out</a>
-                    </li>
+                    {authedUser !== null && 
+                        <li className="nav-item">
+                            <a className="nav-link" href="#">Log Out</a>
+                        </li>
+                    }
                 </ul>
             </div>
         )
@@ -29,4 +34,11 @@ class Navbar extends Component {
 
 }
 
-export default Navbar
+function mapStateToProps ({ authedUser }) {
+  
+    return {
+        authedUser,
+    }
+}
+
+export default connect(mapStateToProps)(Navbar)
