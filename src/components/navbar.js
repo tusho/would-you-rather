@@ -2,10 +2,21 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
 class Navbar extends Component {
+    state = {showLogout: true};
+
+    constructor(props) {
+        super(props);
+        this.state = {showLogout: false};
+        this.handleClick = this.handleClick.bind(this);
+      }
+    
+    handleClick() {
+        this.setState(() => ({showLogout: !this.state.showLogout}))
+      }
 
     render() {
 
-        const { authedUser } = this.props
+        const { authedUser, user } = this.props
         
         return (
             <div className="navbar navbar-expand-lg navbar-light bg-light">
@@ -22,22 +33,39 @@ class Navbar extends Component {
                     <li className="nav-item">
                         <a className="nav-link" href="#">Username</a>
                     </li>
-                    {authedUser !== null && 
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Log Out</a>
-                        </li>
-                    }
                 </ul>
+                {authedUser === null 
+                    ? 
+                        <div className="nav-item">
+                            <a className="nav-link" href="#">Log In</a>
+                        </div>
+                    : 
+                        <div className="nav-item">
+                            {user !== null && 
+                                      <div className="dropdown">
+                                        <button className="btn btn-default dropdown-toggle" onClick={this.handleClick}>
+                                            <img src={user.avatarURL} className='avatar' alt={`Avatar of ${authedUser}`} />
+                                        </button>
+                                        {this.state.showLogout && 
+                                            <ul className="logout">
+                                                <a role="menuitem" href="#">Log Out</a>
+                                            </ul>
+                                        }
+                                    </div>
+                                }
+                        </div>
+                }
             </div>
         )
     }
 
 }
 
-function mapStateToProps ({ authedUser }) {
+function mapStateToProps ({ authedUser, users } ) {
   
     return {
         authedUser,
+        user: users[authedUser],
     }
 }
 

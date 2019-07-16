@@ -36,7 +36,7 @@ function mapStateToProps ({ authedUser, users, questions }, { id }) {
   
     return {
         authedUser,
-        question: formatQuestion(question, users[question.author], authedUser)
+        question: formatQuestion(question, users[question.author])
     }
 }
 

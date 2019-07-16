@@ -32,7 +32,36 @@ code {
 }
 
 .avatar {
-  height: 50px;
+  height: 2rem;
   border-radius: 25px;
   margin: 10px;
+}
+
+.logout {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    min-width: 5rem;
+    padding: .5rem 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-top: none;
+    border-radius: .25rem;
+    text-align: center;
+}
+
+.btn:focus,.btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.navbar-nav {
+  margin-bottom: auto !important;
 }
