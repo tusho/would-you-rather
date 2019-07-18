@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Dashboard from './Dashboard.js'
 import LoadingBar from 'react-redux-loading-bar'
+import Login from './Login.js'
 
 class App extends Component {
   componentDidMount() {
@@ -16,14 +17,13 @@ class App extends Component {
         <Navbar />
         <LoadingBar />
         {this.props.loading === true
-          ? null
+          ? <Login />
           : <Dashboard />}
       </div>
     )
   }
 }
 
-// Render UI only once application has finished loading the initial data
 function mapStateToProps ({ authedUser }) {
   return {
     loading: authedUser === null

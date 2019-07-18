@@ -1,15 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question.js'
-import Login from './Login.js'
 
 class Dashboard extends Component {
   render() {
-    const { users, authedUser } = this.props
     return (
       <div>
-        {authedUser === null ? <Login />
-        : 
         <div>
         <h3 className='text-center'>Polls</h3>
           <ul className='list-unstyled'>
@@ -18,16 +14,14 @@ class Dashboard extends Component {
               ))}
           </ul>
         </div>
-        }
       </div>
     )
   }
 }
 
-function mapStateToProps ({ questions, authedUser }) {
+function mapStateToProps ({ questions }) {
 
   return {
-    authedUser,
     questionIds: Object.keys(questions)
       .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
   }

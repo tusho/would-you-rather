@@ -65,3 +65,16 @@ code {
 .navbar-nav {
   margin-bottom: auto !important;
 }
+
+.card {
+  margin: 10rem auto;
+  width: 30%;
+}
+
+.card-body {
+  padding: 0;
+}
+
+.dropdown {
+  width: 100%;
+}
