@@ -52,9 +52,6 @@ class Navbar extends Component {
                     <li className="nav-item">
                         <a className="nav-link" href="#">Leaderboard</a>
                     </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">Username</a>
-                    </li>
                 </ul>
                 {authedUser !== null &&
                         <div className="nav-item">
