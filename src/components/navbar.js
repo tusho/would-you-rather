@@ -9,15 +9,36 @@ class Navbar extends Component {
         super(props);
         this.state = {showLogout: false};
         this.handleClick = this.handleClick.bind(this);
-      }
+    }
+    
+    componentWillMount() {
+        document.addEventListener('mousedown', this.handleDropdownClick, false);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleDropdownClick, false);
+    }
+
+    handleDropdownClick = (e) => {
+        const { resetAuthedUser } = this.props
+        if (this.state.showLogout === true) {
+            if (this.node.contains(e.target)) {
+                resetAuthedUser()
+                this.setState(() => ({showLogout: !this.state.showLogout}))
+                return;
+            }
+            this.setState(() => ({showLogout: !this.state.showLogout}))
+        }
+    }
     
     handleClick() {
         this.setState(() => ({showLogout: !this.state.showLogout}))
     }
+    
 
     render() {
 
-        const { authedUser, user, dispatch } = this.props
+        const { authedUser, user } = this.props
         
         return (
             <div className="navbar navbar-expand-lg navbar-light bg-light">
@@ -43,8 +64,8 @@ class Navbar extends Component {
                                         <img src={user.avatarURL} className='avatar' alt={`Avatar of ${authedUser}`} />
                                     </button>
                                     {this.state.showLogout && 
-                                        <ul className="logout">
-                                            <a role="menuitem" onClick={() => dispatch(resetAuthedUser())}>Log Out</a>
+                                        <ul className="logout" ref={ node => this.node = node }>
+                                            <a role="menuitem" onClick={(e) => this.handleDropdownClick(e)}>Log Out</a>
                                         </ul>
                                     }
                                 </div>
@@ -57,12 +78,23 @@ class Navbar extends Component {
 
 }
 
-function mapStateToProps ({ authedUser, users } ) {
+function mapStateToProps ({ authedUser, users, dispatch }) {
   
     return {
         authedUser,
         user: users[authedUser],
+        dispatch,
     }
 }
 
-export default connect(mapStateToProps)(Navbar)
+function mapDispatchToProps (dispatch) {
+
+    return {
+        resetAuthedUser: () => {
+            dispatch(resetAuthedUser())
+          }
+    }
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
