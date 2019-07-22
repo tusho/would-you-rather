@@ -13,12 +13,14 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className='App'>
         <Navbar />
         <LoadingBar />
-        {this.props.login === true
-          ? <Login /> 
-          : <Dashboard />}
+        <div className='app-container'>
+          {this.props.login === true
+            ? <Login /> 
+            : <Dashboard />}
+        </div>
       </div>
     )
   }

@@ -22,6 +22,13 @@ code {
   padding-right:30px;
 }
 
+.app-container {
+  padding: 3rem;
+}
+
+.poll-headline {
+  margin-bottom: 2rem;
+}
 .question {
   width: 100%;
   max-width: 590px;
@@ -71,7 +78,7 @@ code {
 
 .card {
   margin: 10rem auto;
-  width: 30%;
+  width: 50%;
 }
 
 .card-body {

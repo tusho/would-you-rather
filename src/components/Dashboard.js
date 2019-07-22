@@ -4,7 +4,7 @@ import Question from './Question.js'
 
 class Dashboard extends Component {
 
-  state = {filteredQuestions: this.props.questionIds};
+  state = {filteredQuestions: this.props.questions};
 
   handleChange = (e) => {
      
@@ -21,18 +21,18 @@ class Dashboard extends Component {
     }
 
     switch(selectedValue) {
-      case 'yourQuestions':
-          this.setState({filteredQuestions: this.props.authedUserQuestionIds});
+      case 'answered':
+          this.setState({filteredQuestions: this.props.answeredQuestions});
           break;
-      case 'otherQuestions':
-          this.setState({filteredQuestions: this.props.unAuthedUserQuestionIds});
+      case 'unanswered':
+          this.setState({filteredQuestions: this.props.unansweredQuestions});
           break;
       case 'clearFilter':
-        this.setState({filteredQuestions: this.props.questionIds});
+        this.setState({filteredQuestions: this.props.questions});
         resetForm();
         break;
       default:
-          this.setState({filteredQuestions: this.props.questionIds});
+          this.setState({filteredQuestions: this.props.questions});
     }
 
   }
@@ -41,15 +41,15 @@ class Dashboard extends Component {
   render() {
 
     const { filteredQuestions } = this.state
-
+    console.log(' 1111111111111 ' + this.props.theVotes)
     return (
       <div>
-        <h3 className='text-center'>Polls</h3>
+        <h3 className='poll-headline text-center'>Polls</h3>
           <div className='row m-auto filter'>
             <select className='dropdown' id='filterSelect' defaultValue={'none'} onChange={(e) => this.handleChange(e)}>
                 <option value='none' disabled>Select filter...</option>
-                <option value='yourQuestions'>Your questions</option>
-                <option value='otherQuestions'>Questions by others</option>
+                <option value='unanswered'>Unanswered Questions</option>
+                <option value='answered'>Answered Questions</option>
                 <option value='clearFilter'>Clear filter</option>
             </select>
           </div>
@@ -70,9 +70,9 @@ function mapStateToProps ({ questions, authedUser }, { id }) {
 
   return {
     id,
-    questionIds: Object.keys(questions).sort((a,b) => questions[b].timestamp - questions[a].timestamp),
-    authedUserQuestionIds: Object.values(questions).filter((question) => (question.author === authedUser )).map(question => {return question.id}).sort((a,b) => questions[b].timestamp - questions[a].timestamp),
-    unAuthedUserQuestionIds: Object.values(questions).filter((question) => (question.author !== authedUser )).map(question => {return question.id}).sort((a,b) => questions[b].timestamp - questions[a].timestamp),
+    questions: Object.keys(questions).sort((a,b) => questions[b].timestamp - questions[a].timestamp),
+    answeredQuestions: Object.values(questions).filter((question) => (question.optionOne.votes.concat(question.optionTwo.votes).includes(authedUser))).map(question => {return question.id}).sort((a,b) => questions[b].timestamp - questions[a].timestamp),
+    unansweredQuestions: Object.values(questions).filter((question) => !(question.optionOne.votes.concat(question.optionTwo.votes).includes(authedUser))).map(question => {return question.id}).sort((a,b) => questions[b].timestamp - questions[a].timestamp),
   }
 
 }
