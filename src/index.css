@@ -8,10 +8,12 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+.navbar {
+  background-color: #e3f2fd;
+}
 .navbar-nav {
   margin: auto;
 }

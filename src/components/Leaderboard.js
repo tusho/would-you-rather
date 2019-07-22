@@ -22,7 +22,7 @@ class Dashboard extends Component {
                             <p>Questions answered: {Object.keys(user.answers).length}</p>
                             <p>Questions created: {Object.keys(user.questions).length}</p>
                         </div>
-                        <div className='col-2'>Your Score: {Object.keys(user.answers).length + Object.keys(user.questions).length}</div>
+                        <div className='col-2'>Your Score: {Object.keys(user.answers).length + Object.keys(user.questions).length}</div>
                       </div>
                   </li>
               ))}
@@ -37,9 +37,11 @@ class Dashboard extends Component {
 
 function mapStateToProps ({ users }) {
 
-  return {
-    users
-  }
+    const score = (user) => Object.keys(user.answers).length + user.questions.length;
+
+    return {
+        users: Object.values(users).sort((a, b) => score(b) - score(a))
+    }
 
 }
 

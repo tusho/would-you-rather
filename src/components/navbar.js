@@ -41,28 +41,28 @@ class Navbar extends Component {
         const { authedUser, user } = this.props
         
         return (
-            <div className="navbar navbar-expand-lg navbar-light bg-light">
-                <ul className="navbar-nav">
-                    <li className="nav-item active">
-                        <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+            <div className='navbar navbar-expand-lg navbar-light'>
+                <ul className='navbar-nav'>
+                    <li className='nav-item active'>
+                        <a className='nav-link' href='#'>Home <span className='sr-only'>(current)</span></a>
                     </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">New Question</a>
+                    <li className='nav-item'>
+                        <a className='nav-link' href='#'>New Question</a>
                     </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">Leaderboard</a>
+                    <li className='nav-item'>
+                        <a className='nav-link' href='#'>Leaderboard</a>
                     </li>
                 </ul>
                 {authedUser !== null &&
-                        <div className="nav-item">
+                        <div className='nav-item'>
                             {user !== null && 
-                                <div className="dropdown">
-                                    <button className="btn btn-default dropdown-toggle" onClick={this.handleClick}>
+                                <div className='dropdown'>
+                                    <button className='btn btn-default dropdown-toggle' onClick={this.handleClick}>
                                         <img src={user.avatarURL} className='avatar' alt={`Avatar of ${authedUser}`} />
                                     </button>
                                     {this.state.showLogout && 
-                                        <ul className="logout" ref={ node => this.node = node }>
-                                            <a role="menuitem" onClick={(e) => this.handleDropdownClick(e)}>Log Out</a>
+                                        <ul className='logout' ref={ node => this.node = node }>
+                                            <a role='menuitem' onClick={(e) => this.handleDropdownClick(e)}>Log Out</a>
                                         </ul>
                                     }
                                 </div>
