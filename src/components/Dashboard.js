@@ -41,12 +41,12 @@ class Dashboard extends Component {
   render() {
 
     const { filteredQuestions } = this.state
-    console.log(' 1111111111111 ' + this.props.theVotes)
+    
     return (
       <div>
         <h3 className='poll-headline text-center'>Polls</h3>
           <div className='row m-auto filter'>
-            <select className='dropdown' id='filterSelect' defaultValue={'none'} onChange={(e) => this.handleChange(e)}>
+            <select className='dropdown' id='filterSelect' defaultValue='unanswered' onChange={(e) => this.handleChange(e)}>
                 <option value='none' disabled>Select filter...</option>
                 <option value='unanswered'>Unanswered Questions</option>
                 <option value='answered'>Answered Questions</option>

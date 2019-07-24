@@ -29,6 +29,7 @@ code {
 .poll-headline {
   margin-bottom: 2rem;
 }
+
 .question {
   width: 100%;
   max-width: 590px;
@@ -40,10 +41,14 @@ code {
   cursor: pointer;
 }
 
+.question-headline {
+  margin-bottom: 2rem;
+}
+
 .avatar {
-  height: 2rem;
+  height: 4rem;
   border-radius: 25px;
-  margin: 10px;
+  margin-right: 3rem;
 }
 
 .logout {
@@ -92,4 +97,10 @@ code {
 .filter {
   width: 100%;
   max-width: 590px;
+}
+
+.votes {
+  border: 1px solid grey;
+  border-radius: 1rem;
+  margin: 0 1rem;
 }
