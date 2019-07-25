@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Navbar from './Navbar.js'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
@@ -7,6 +7,7 @@ import LoadingBar from 'react-redux-loading-bar'
 import Dashboard from './Dashboard.js'
 import Leaderboard from './Leaderboard.js'
 import Login from './Login.js'
+import SingleQuestion from './SingleQuestion.js'
 
 class App extends Component {
   componentDidMount() {
@@ -24,6 +25,7 @@ class App extends Component {
             :
             <div className='app-container'>
             <Route path='/' exact component={Dashboard} />
+                  <Route path='/question/:id' component={SingleQuestion} />
             <Route path='/leaderboard' exact component={Leaderboard} />
           </div>
           }

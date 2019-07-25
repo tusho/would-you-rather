@@ -63,7 +63,7 @@ class Navbar extends Component {
                                     </button>
                                     {this.state.showLogout && 
                                         <ul className='logout' ref={ node => this.node = node }>
-                                            <a role='menuitem' onClick={(e) => this.handleDropdownClick(e)}>Log Out</a>
+                                            <p role='menuitem' className='logout-link' onClick={(e) => this.handleDropdownClick(e)}>Log Out</p>
                                         </ul>
                                     }
                                 </div>

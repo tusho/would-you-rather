@@ -2,34 +2,30 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
 import { voteQuestion } from '../actions/questions';
-import { voteUser } from '../actions/users';
-import { Link } from 'react-router-dom'
 
-class Question extends Component {
+class SingleQuestion extends Component {
 
 
-    handleClick = (vote, e) => {
-        e.preventDefault();
+    handleClick = (vote) => {
         const { authedUser, id } = this.props;
         this.props.voteQuestion(authedUser, id, vote);
-        this.props.voteUser(authedUser, id, vote)
     }
 
 
 
     render() {
-        const { question, authedUser } = this.props
+        const { question, authedUser, questionIds, id } = this.props
         
-        if (question === null) {
+        if (questionIds.includes(id) === false) {
             return <p>This question does not exist</p>
         }
 
-        const { name, avatar, optionOne, optionTwo, id } = question
+        const { name, avatar, optionOne, optionTwo } = question
         const allVotes = optionOne.votes.concat(optionTwo.votes)
         
         return (
-            <li className='question d-flex flex-column'>
-                <Link to={`/question/${id}`} className='question-info p-2' style={{ textDecoration: 'none' }}>
+            <div className='question d-flex flex-column'>
+                <div className='question-info p-2'>
                     <h4 className="questions-headline">{name} asks:</h4>
                     <div className="row">
                         <div className='col-2'><img src={avatar} className='avatar' alt={`Avatar of ${name}`} /></div>
@@ -51,27 +47,29 @@ class Question extends Component {
                                     </div>
                                 :
                                     <div className='row m-0 p-2 w-100'>
-                                        <div className='col-12 btn btn-primary m-1' onClick={(e) => this.handleClick('optionOne', e)}>{optionOne.text}</div>
-                                        <div className='col-12 btn btn-primary m-1' onClick={(e) => this.handleClick('optionTwo', e)}>{optionTwo.text}</div>
+                                        <div className='col-12 btn btn-primary m-1' onClick={() => this.handleClick('optionOne')}>{optionOne.text}</div>
+                                        <div className='col-12 btn btn-primary m-1' onClick={() => this.handleClick('optionTwo')}>{optionTwo.text}</div>
                                     </div>
                                 }
                             </div>
                         </div>
                     </div>
-                </Link>
-            </li>
+                </div>
+            </div>
         )
     }
 }
 
 
-function mapStateToProps ({ authedUser, users, questions, dispatch }, { id }) {
+function mapStateToProps ({ authedUser, users, questions }, props) {
+    const { id } = props.match.params
     const question = questions[id]
   
     return {
         authedUser,
-        dispatch,
+        id,
         question: formatQuestion(question, users[question.author]),
+        questionIds: Object.keys(questions),
     }
 }
 
@@ -80,12 +78,9 @@ function mapDispatchToProps (dispatch) {
     return {
         voteQuestion: (authedUser, id, vote) => {
             dispatch(voteQuestion(authedUser, id, vote))
-        },
-        voteUser: (authedUser, id, vote) => {
-        dispatch(voteUser(authedUser, id, vote))
-        }
+          }
     }
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Question)
+export default connect(mapStateToProps, mapDispatchToProps)(SingleQuestion)

@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser';
-import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
 
     handleOnChange = (e) => {
         this.props.setAuthedUser(e.target.value)
-        // return <Redirect to='/' />
     }
 
     render() {
