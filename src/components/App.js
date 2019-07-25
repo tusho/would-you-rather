@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import Navbar from './Navbar.js'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
-import Dashboard from './Dashboard.js'
 import LoadingBar from 'react-redux-loading-bar'
+import Dashboard from './Dashboard.js'
+import Leaderboard from './Leaderboard.js'
 import Login from './Login.js'
 
 class App extends Component {
@@ -13,15 +15,21 @@ class App extends Component {
 
   render() {
     return (
-      <div className='App'>
-        <Navbar />
-        <LoadingBar />
-        <div className='app-container'>
-          {this.props.login === true
-            ? <Login /> 
-            : <Dashboard />}
+      <Router>
+        <div className='App'>
+          <Navbar />
+          <LoadingBar />
+          {this.props.login === true ? 
+            <Login />
+            :
+            <div className='app-container'>
+            <Route path='/' exact component={Dashboard} />
+            <Route path='/leaderboard' exact component={Leaderboard} />
+          </div>
+          }
+          
         </div>
-      </div>
+      </Router>
     )
   }
 }

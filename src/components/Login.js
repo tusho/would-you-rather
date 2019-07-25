@@ -1,17 +1,24 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser';
+import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
 
+    handleOnChange = (e) => {
+        this.props.setAuthedUser(e.target.value)
+        // return <Redirect to='/' />
+    }
+
     render() {
-        const { users, setAuthedUser } = this.props
+        const { users } = this.props
+
         return (
         <div className="card">
             <div className="card-body">
                 <div className="card-header">Welcome to the Would-You-Rather App</div>
                 <div className="card-body">
-                    <select className="dropdown" defaultValue={'none'} onChange={(e) => setAuthedUser(e.target.value)}>
+                    <select className="dropdown" defaultValue={'none'} onChange={(e) => this.handleOnChange(e)}>
                     <option value="none" disabled>Select User</option>
                         {Object.keys(users).map(user => <option value={user} key={user}>{users[user].name}</option>)}
                     </select>

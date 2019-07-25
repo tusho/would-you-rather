@@ -4,13 +4,13 @@ import Question from './Question.js'
 
 class Dashboard extends Component {
 
-  state = {filteredQuestions: this.props.questions};
+
+  state = {filteredQuestions: this.props.unansweredQuestions};
+
 
   handleChange = (e) => {
-     
-
+    
     const selectedValue = e.target.value.toString()
-
 
     const resetForm = () => {
       const selector = document.getElementsByTagName('select');
@@ -44,26 +44,29 @@ class Dashboard extends Component {
     
     return (
       <div>
-        <h3 className='poll-headline text-center'>Polls</h3>
-          <div className='row m-auto filter'>
-            <select className='dropdown' id='filterSelect' defaultValue='unanswered' onChange={(e) => this.handleChange(e)}>
-                <option value='none' disabled>Select filter...</option>
-                <option value='unanswered'>Unanswered Questions</option>
-                <option value='answered'>Answered Questions</option>
-                <option value='clearFilter'>Clear filter</option>
-            </select>
+          <div>
+            <h3 className='poll-headline text-center'>Polls</h3>
+            <div className='row m-auto filter'>
+              <select className='dropdown' id='filterSelect' defaultValue='unanswered' onChange={(e) => this.handleChange(e)}>
+                  <option value='none' disabled>Select filter...</option>
+                  <option value='unanswered'>Unanswered Questions</option>
+                  <option value='answered'>Answered Questions</option>
+                  <option value='clearFilter'>Clear filter</option>
+              </select>
+            </div>
+            <ul className='list-unstyled'>
+                {filteredQuestions !== null && filteredQuestions.map((id) => (
+                    <Question id={id}  key={id}/>
+                ))}
+            </ul>
           </div>
-          <ul className='list-unstyled'>
-              {filteredQuestions !== null && filteredQuestions.map((id) => (
-                  <Question id={id}  key={id}/>
-              ))}
-          </ul>
       </div>
     )
 
   }
 
 }
+
 
 
 function mapStateToProps ({ questions, authedUser }, { id }) {
@@ -76,6 +79,7 @@ function mapStateToProps ({ questions, authedUser }, { id }) {
   }
 
 }
+
 
 
 export default connect(mapStateToProps)(Dashboard)

@@ -20,7 +20,7 @@ class Question extends Component {
             return <p>This question does not exist</p>
         }
 
-        const { name, avatar, timestamp, optionOne, optionTwo, id } = question
+        const { name, avatar, optionOne, optionTwo, id } = question
         const allVotes = optionOne.votes.concat(optionTwo.votes)
         
         return (
@@ -55,8 +55,6 @@ class Question extends Component {
                         </div>
                     </div>
                 </div>
-                {/* <div className='question-info p-2'>Poll was created at: {formatDate(timestamp)} </div>
-                <div className='question-info p-2'>You created this poll: {(name.toLowerCase().replace(/\s+/g, '') === authedUser ? 'true' : 'false')} </div> */}
             </li>
         )
     }

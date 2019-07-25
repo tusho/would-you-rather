@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { resetAuthedUser } from '../actions/authedUser';
+import { NavLink } from 'react-router-dom'
 
 class Navbar extends Component {
     state = {showLogout: true};
@@ -44,13 +45,13 @@ class Navbar extends Component {
             <div className='navbar navbar-expand-lg navbar-light'>
                 <ul className='navbar-nav'>
                     <li className='nav-item active'>
-                        <a className='nav-link' href='#'>Home <span className='sr-only'>(current)</span></a>
+                        <NavLink to='/' exact activeClassName='active' className='nav-link'>Home</NavLink>
                     </li>
                     <li className='nav-item'>
-                        <a className='nav-link' href='#'>New Question</a>
+                        <NavLink to='/new' exact activeClassName='active' className='nav-link'>New Question</NavLink>
                     </li>
                     <li className='nav-item'>
-                        <a className='nav-link' href='#'>Leaderboard</a>
+                        <NavLink to='/leaderboard' exact activeClassName='active' className='nav-link'>Leaderboard</NavLink>
                     </li>
                 </ul>
                 {authedUser !== null &&
