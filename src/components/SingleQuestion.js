@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
 import { voteQuestion } from '../actions/questions';
+import { voteUser } from '../actions/users';
 
 class SingleQuestion extends Component {
 
@@ -9,6 +10,7 @@ class SingleQuestion extends Component {
     handleClick = (vote) => {
         const { authedUser, id } = this.props;
         this.props.voteQuestion(authedUser, id, vote);
+        this.props.voteUser(authedUser, id, vote);
     }
 
 
@@ -78,7 +80,10 @@ function mapDispatchToProps (dispatch) {
     return {
         voteQuestion: (authedUser, id, vote) => {
             dispatch(voteQuestion(authedUser, id, vote))
-          }
+        },
+        voteUser: (authedUser, id, vote) => {
+        dispatch(voteUser(authedUser, id, vote))
+        }
     }
 
 }
