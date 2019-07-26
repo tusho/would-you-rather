@@ -8,6 +8,7 @@ import Dashboard from './Dashboard.js'
 import Leaderboard from './Leaderboard.js'
 import Login from './Login.js'
 import SingleQuestion from './SingleQuestion.js'
+import NewQuestion from './NewQuestion.js'
 
 class App extends Component {
   componentDidMount() {
@@ -24,9 +25,10 @@ class App extends Component {
             <Login />
             :
             <div className='app-container'>
-            <Route path='/' exact component={Dashboard} />
-                  <Route path='/question/:id' component={SingleQuestion} />
-            <Route path='/leaderboard' exact component={Leaderboard} />
+              <Route path='/' exact component={Dashboard} />
+              <Route path='/new' exact component={NewQuestion} />
+              <Route path='/question/:id' component={SingleQuestion} />
+              <Route path='/leaderboard' exact component={Leaderboard} />
           </div>
           }
           

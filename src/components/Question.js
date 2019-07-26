@@ -12,7 +12,7 @@ class Question extends Component {
         e.preventDefault();
         const { authedUser, id } = this.props;
         this.props.voteQuestion(authedUser, id, vote);
-        this.props.voteUser(authedUser, id, vote)
+        this.props.voteUser(authedUser, id, vote);
     }
 
 
