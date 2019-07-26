@@ -25,10 +25,10 @@ class App extends Component {
             <Login />
             :
             <div className='app-container'>
-              <Route path='/' exact component={Dashboard} />
-              <Route path='/new' exact component={NewQuestion} />
-              <Route path='/question/:id' component={SingleQuestion} />
-              <Route path='/leaderboard' exact component={Leaderboard} />
+            <Route path='/' exact component={Dashboard} />
+            <Route path='/add' exact component={NewQuestion} />
+            <Route path='/question/:id' component={SingleQuestion} />
+            <Route path='/leaderboard' exact component={Leaderboard} />
           </div>
           }
           

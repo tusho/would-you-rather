@@ -33,10 +33,10 @@ class newQuestion extends Component {
         <div className='newQuestion'>
             { this.state.submitted ? 
                 <div>
-                    <h3>You have successfully created a question</h3>
+                    <h5>You have successfully created a question</h5>
                 </div> :
                 <div>
-                    <h3>Create a new Question</h3>
+                    <h3>Congratulations! Your question has been added.</h3>
                     <div className='form-group'>
                         <label className='question-copy'>Would you rather</label>
                         <input className='form-control' placeholder='Option 1' onChange={(e) => this.handleInput(e, 'optionOne')} />

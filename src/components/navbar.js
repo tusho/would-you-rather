@@ -42,13 +42,13 @@ class Navbar extends Component {
         const { authedUser, user } = this.props
         
         return (
-            <div className='navbar navbar-expand-lg navbar-light'>
+            <div className='navbar navbar-expand-md navbar-light'>
                 <ul className='navbar-nav'>
                     <li className='nav-item active'>
                         <NavLink to='/' exact activeClassName='active' className='nav-link'>Home</NavLink>
                     </li>
                     <li className='nav-item'>
-                        <NavLink to='/new' exact activeClassName='active' className='nav-link'>New Question</NavLink>
+                        <NavLink to='/add' exact activeClassName='active' className='nav-link'>New Question</NavLink>
                     </li>
                     <li className='nav-item'>
                         <NavLink to='/leaderboard' exact activeClassName='active' className='nav-link'>Leaderboard</NavLink>

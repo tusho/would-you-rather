@@ -5,11 +5,12 @@ import { setAuthedUser } from '../actions/authedUser';
 class Login extends Component {
 
     handleOnChange = (e) => {
-        this.props.setAuthedUser(e.target.value);
+        this.props.setAuthedUser(e.target.value)
     }
 
     render() {
         const { users } = this.props
+
         return (
         <div className="card">
             <div className="card-body">

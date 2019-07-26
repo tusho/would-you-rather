@@ -38,11 +38,11 @@ class SingleQuestion extends Component {
                                     <div className='row m-0 p-2 w-100'>
                                         <h6>Results:</h6>
                                         <p className='w-100'>You have already answered this question.</p>
-                                        <div className='col-12 votes m-1' value='optionOne'>
+                                        <div className={'col-12 votes m-1 ' + (optionOne.votes.includes(authedUser) && 'vote-highlighted')} value='optionOne'>
                                             <p>{optionOne.text}</p>
                                             <p>{optionOne.votes.length} out of {allVotes.length} votes.</p>
                                         </div> 
-                                        <div className='col-12 votes m-1'>
+                                        <div className={'col-12 votes m-1 ' + (optionOne.votes.includes(authedUser) && 'vote-highlighted')}>
                                             <p>{optionTwo.text}</p>
                                             <p>{optionTwo.votes.length} out of {allVotes.length} votes.</p>
                                         </div>

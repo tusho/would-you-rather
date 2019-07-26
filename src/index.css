@@ -114,8 +114,13 @@ code {
 
 .votes {
   border: 1px solid #dad7d7;
+  padding-top: 1rem;
   border-radius: 1rem;
   margin: 0 1rem;
+}
+
+.vote-highlighted {
+  background-color: #C8E7B5;
 }
 
 .newQuestion {
