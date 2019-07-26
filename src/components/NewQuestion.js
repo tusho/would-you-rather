@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { saveQuestion } from '../actions/questions';
+import { saveQuestion } from '../actions/questions'
 import { formatNewQuestion } from '../utils/helpers'
 
 class newQuestion extends Component {
 
-  state = { optionOne: '', optionTwo: '', submitted: false}
+  state = { optionOne: '', optionTwo: ''}
 
   handleInput = (e, selectedOption) => {
       switch(selectedOption) {
@@ -24,28 +24,22 @@ class newQuestion extends Component {
   handleSubmit() {
       const newQuestion = formatNewQuestion(this.state.optionOne, this.state.optionTwo, this.props.authedUser)
       this.props.saveQuestion(newQuestion)
-      this.setState({ submitted: true })
   }
 
   render() {
     
     return (
         <div className='newQuestion'>
-            { this.state.submitted ? 
-                <div>
-                    <h5>You have successfully created a question</h5>
-                </div> :
-                <div>
-                    <h3>Congratulations! Your question has been added.</h3>
-                    <div className='form-group'>
-                        <label className='question-copy'>Would you rather</label>
-                        <input className='form-control' placeholder='Option 1' onChange={(e) => this.handleInput(e, 'optionOne')} />
-                        <label className='question-copy'>or</label>
-                        <input className='form-control' placeholder='Option 2' onChange={(e) => this.handleInput(e, 'optionTwo')}/>
-                    </div>
-                    <button className="btn btn-primary" onClick={() => this.handleSubmit()}>Submit</button>
+            <div>
+                <h3>Congratulations! Your question has been added.</h3>
+                <div className='form-group'>
+                    <label className='question-copy'>Would you rather</label>
+                    <input className='form-control' placeholder='Option 1' onChange={(e) => this.handleInput(e, 'optionOne')} />
+                    <label className='question-copy'>or</label>
+                    <input className='form-control' placeholder='Option 2' onChange={(e) => this.handleInput(e, 'optionTwo')}/>
                 </div>
-            }
+                <button className="btn btn-primary" onClick={() => this.handleSubmit()}>Submit</button>
+            </div>
       </div>
     )
 

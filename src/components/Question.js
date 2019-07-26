@@ -47,11 +47,11 @@ class Question extends Component {
                                         <h6>Results:</h6>
                                         <p className='w-100'>You have already answered this question.</p>
                                         <div className={'col-12 votes m-1 ' + (optionOne.votes.includes(authedUser) && 'vote-highlighted')} value='optionOne'>
-                                            <p>{optionOne.text}</p>
+                                            <p><b>{optionOne.text}</b></p>
                                             <p>{numberOptionOne} out of {numberVotes} votes ({percentageOptionOne}%).</p>
                                         </div> 
                                         <div className={'col-12 votes m-1 ' + (optionTwo.votes.includes(authedUser) && 'vote-highlighted')}>
-                                            <p>{optionTwo.text}</p>
+                                            <p><b>{optionTwo.text}</b></p>
                                             <p>{numberOptionTwo} out of {numberVotes} votes ({percentageOptionTwo}%).</p>
                                         </div>
                                     </div>
