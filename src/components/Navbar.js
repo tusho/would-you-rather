@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { resetAuthedUser } from '../actions/authedUser';
-import { NavLink } from 'react-router-dom'
+import { resetAuthedUser } from '../actions/authedUser'
+import { NavLink, withRouter } from 'react-router-dom'
 
 class Navbar extends Component {
     state = {showLogout: true};
@@ -26,6 +26,7 @@ class Navbar extends Component {
             if (this.node.contains(e.target)) {
                 resetAuthedUser()
                 this.setState(() => ({showLogout: !this.state.showLogout}))
+                this.props.history.push('/')
                 return;
             }
             this.setState(() => ({showLogout: !this.state.showLogout}))
@@ -95,4 +96,4 @@ function mapDispatchToProps (dispatch) {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar))

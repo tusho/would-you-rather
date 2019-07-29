@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { saveQuestion } from '../actions/questions'
 import { formatNewQuestion } from '../utils/helpers'
+import { withRouter } from 'react-router-dom'
 
 class newQuestion extends Component {
 
@@ -24,6 +25,7 @@ class newQuestion extends Component {
   handleSubmit() {
       const newQuestion = formatNewQuestion(this.state.optionOne, this.state.optionTwo, this.props.authedUser)
       this.props.saveQuestion(newQuestion)
+      this.props.history.push('/')
   }
 
   render() {
@@ -69,4 +71,4 @@ function mapDispatchToProps (dispatch) {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(newQuestion)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(newQuestion))
