@@ -24,11 +24,16 @@ class SingleQuestion extends Component {
 
         const { name, avatar, optionOne, optionTwo } = question
         const allVotes = optionOne.votes.concat(optionTwo.votes)
+        const numberVotes = allVotes.length
+        const numberOptionOne = optionOne.votes.length
+        const percentageOptionOne = Math.round(100 * (numberOptionOne/numberVotes))
+        const numberOptionTwo = optionTwo.votes.length
+        const percentageOptionTwo = Math.round(100 * (numberOptionTwo/numberVotes))
         
         return (
             <div className='question d-flex flex-column'>
                 <div className='question-info p-2'>
-                    <h4 className="questions-headline">{name} asks:</h4>
+                <h4 className="questions-headline">{name} asks:</h4>
                     <div className="row">
                         <div className='col-2'><img src={avatar} className='avatar' alt={`Avatar of ${name}`} /></div>
                         <div className='col-10'>
@@ -40,17 +45,17 @@ class SingleQuestion extends Component {
                                         <p className='w-100'>You have already answered this question.</p>
                                         <div className={'col-12 votes m-1 ' + (optionOne.votes.includes(authedUser) && 'vote-highlighted')} value='optionOne'>
                                             <p><b>{optionOne.text}</b></p>
-                                            <p>{optionOne.votes.length} out of {allVotes.length} votes.</p>
+                                            <p>{numberOptionOne} out of {numberVotes} votes ({percentageOptionOne}%).</p>
                                         </div> 
-                                        <div className={'col-12 votes m-1 ' + (optionOne.votes.includes(authedUser) && 'vote-highlighted')}>
+                                        <div className={'col-12 votes m-1 ' + (optionTwo.votes.includes(authedUser) && 'vote-highlighted')}>
                                             <p><b>{optionTwo.text}</b></p>
-                                            <p>{optionTwo.votes.length} out of {allVotes.length} votes.</p>
+                                            <p>{numberOptionTwo} out of {numberVotes} votes ({percentageOptionTwo}%).</p>
                                         </div>
                                     </div>
                                 :
                                     <div className='row m-0 p-2 w-100'>
-                                        <div className='col-12 btn btn-primary m-1' onClick={() => this.handleClick('optionOne')}>{optionOne.text}</div>
-                                        <div className='col-12 btn btn-primary m-1' onClick={() => this.handleClick('optionTwo')}>{optionTwo.text}</div>
+                                        <div className='col-12 btn btn-primary m-1' onClick={(e) => this.handleClick('optionOne', e)}>{optionOne.text}</div>
+                                        <div className='col-12 btn btn-primary m-1' onClick={(e) => this.handleClick('optionTwo', e)}>{optionTwo.text}</div>
                                     </div>
                                 }
                             </div>
