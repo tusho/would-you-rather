@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { saveQuestion } from '../actions/questions'
+import { addQuestion } from '../actions/users'
 import { formatNewQuestion } from '../utils/helpers'
 import { withRouter } from 'react-router-dom'
 
@@ -23,9 +24,12 @@ class newQuestion extends Component {
   }
 
   handleSubmit() {
-      const newQuestion = formatNewQuestion(this.state.optionOne, this.state.optionTwo, this.props.authedUser)
-      this.props.saveQuestion(newQuestion)
-      this.props.history.push('/')
+      const { optionOne, optionTwo } = this.state
+      const { authedUser, saveQuestion, addQuestion, history } = this.props
+      const newQuestion = formatNewQuestion(optionOne, optionTwo, authedUser)
+      saveQuestion(newQuestion)
+      addQuestion(authedUser, newQuestion.id)
+      history.push('/')
   }
 
   render() {
@@ -66,6 +70,9 @@ function mapDispatchToProps (dispatch) {
     return {
         saveQuestion: (newQuestion) => {
             dispatch(saveQuestion(newQuestion))
+        },
+        addQuestion: (authedUser, id) => {
+            dispatch(addQuestion(authedUser, id))
         }
     }
 

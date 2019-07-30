@@ -21,7 +21,12 @@ class Question extends Component {
         const { question, authedUser, questionIds, id } = this.props
         
         if (questionIds.includes(id) === false) {
-            return <p>This question does not exist</p>
+            return (
+                <div>
+                    <h5>Error 404</h5>
+                    <p>This question does not exist</p>
+                </div>
+            )
         }
 
         const { name, avatar, optionOne, optionTwo } = question

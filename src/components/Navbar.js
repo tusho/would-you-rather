@@ -59,9 +59,13 @@ class Navbar extends Component {
                         <div className='nav-item'>
                             {user !== null && 
                                 <div className='dropdown'>
-                                    <button className='btn btn-default dropdown-toggle' onClick={this.handleClick}>
-                                        <img src={user.avatarURL} className='avatar' alt={`Avatar of ${authedUser}`} />
-                                    </button>
+                                    <div className='row'>
+                                        <p className='username'>{user.name}</p>
+                                        <button className='btn btn-default dropdown-toggle' onClick={this.handleClick}>
+                                            <img src={user.avatarURL} className='avatar' alt={`Avatar of ${authedUser}`} />
+                                        </button>
+                                    </div>
+                                    
                                     {this.state.showLogout && 
                                         <ul className='logout' ref={ node => this.node = node }>
                                             <p role='menuitem' className='logout-link' onClick={(e) => this.handleDropdownClick(e)}>Log Out</p>

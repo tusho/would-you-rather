@@ -139,3 +139,8 @@ code {
   text-align: center;
   margin-top: 1rem;
 }
+
+.username {
+  margin-top: 1rem;
+  color: rgba(0,0,0,.5)
+}
