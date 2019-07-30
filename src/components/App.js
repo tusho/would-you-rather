@@ -7,7 +7,7 @@ import LoadingBar from 'react-redux-loading-bar'
 import Dashboard from './Dashboard.js'
 import Leaderboard from './Leaderboard.js'
 import Login from './Login.js'
-import SingleQuestion from './SingleQuestion.js'
+import Question from './Question.js'
 import NewQuestion from './NewQuestion.js'
 
 class App extends Component {
@@ -27,7 +27,7 @@ class App extends Component {
             <div className='app-container'>
             <Route path='/' exact component={Dashboard} />
             <Route path='/add' exact component={NewQuestion} />
-            <Route path='/question/:id' component={SingleQuestion} />
+            <Route path='/question/:id' render={(props) => (<Question {...props} />)} />
             <Route path='/leaderboard' exact component={Leaderboard} />
           </div>
           }
