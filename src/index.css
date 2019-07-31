@@ -46,6 +46,9 @@ code {
   display: flex;
   margin: 1rem auto;
   border: 1px solid #dad7d7;
+}
+
+.question.pointer {
   cursor: pointer;
 }
 

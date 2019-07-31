@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Router, Route } from 'react-router-dom'
+import history from '../utils/history'
 import Navbar from './Navbar.js'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
@@ -17,7 +18,7 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <div className='App'>
           <Navbar />
           <LoadingBar />

@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
-import { voteQuestion } from '../actions/questions'
-import { voteUser } from '../actions/users'
 import { Link } from 'react-router-dom'
+import { handleAnswer } from '../actions/shared'
 
 class Question extends Component {
 
 
     handleClick = (vote, e) => {
-        e.preventDefault();
-        const { authedUser, id } = this.props;
-        this.props.voteQuestion(authedUser, id, vote);
-        this.props.voteUser(authedUser, id, vote);
+        e.preventDefault()
+        const { id, handleAnswer } = this.props
+        handleAnswer(id, vote)
     }
+
+
 
 
     render() {
@@ -47,7 +47,7 @@ class Question extends Component {
                             <div className='col-2'><img src={avatar} className='avatar' alt={`Avatar of ${name}`} /></div>
                             <div className='col-10'>
                                 <h5>Would you rather</h5>
-                                <div className='question'>
+                                <div className='question pointer'>
                                     {allVotes.includes(authedUser) ? 
                                         <div className='row m-0 p-2 w-100'>
                                             <h6>Results:</h6>
@@ -114,17 +114,16 @@ function mapStateToProps ({ authedUser, users, questions }, props) {
   
 }
 
+
 function mapDispatchToProps (dispatch) {
 
     return {
-        voteQuestion: (authedUser, id, vote) => {
-            dispatch(voteQuestion(authedUser, id, vote))
-        },
-        voteUser: (authedUser, id, vote) => {
-        dispatch(voteUser(authedUser, id, vote))
+        handleAnswer: (id, vote) => {
+            dispatch(handleAnswer(id, vote))
         }
     }
 
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Question)

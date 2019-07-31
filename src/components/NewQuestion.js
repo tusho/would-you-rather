@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { saveQuestion } from '../actions/questions'
-import { addQuestion } from '../actions/users'
 import { formatNewQuestion } from '../utils/helpers'
 import { withRouter } from 'react-router-dom'
+import { handleAddQuestion } from '../actions/shared'
 
 class newQuestion extends Component {
 
-  state = { optionOne: '', optionTwo: ''}
+  state = { optionOne: '', optionTwo: '' }
 
   handleInput = (e, selectedOption) => {
       switch(selectedOption) {
@@ -25,11 +24,9 @@ class newQuestion extends Component {
 
   handleSubmit() {
       const { optionOne, optionTwo } = this.state
-      const { authedUser, saveQuestion, addQuestion, history } = this.props
+      const { authedUser, handleAddQuestion} = this.props
       const newQuestion = formatNewQuestion(optionOne, optionTwo, authedUser)
-      saveQuestion(newQuestion)
-      addQuestion(authedUser, newQuestion.id)
-      history.push('/')
+      handleAddQuestion(newQuestion)
   }
 
   render() {
@@ -37,7 +34,6 @@ class newQuestion extends Component {
     return (
         <div className='newQuestion'>
             <div>
-                <h3>Congratulations! Your question has been added.</h3>
                 <div className='form-group'>
                     <label className='question-copy'>Would you rather</label>
                     <input className='form-control' placeholder='Option 1' onChange={(e) => this.handleInput(e, 'optionOne')} />
@@ -68,11 +64,8 @@ function mapStateToProps ({ questions, authedUser, dispatch }) {
 function mapDispatchToProps (dispatch) {
 
     return {
-        saveQuestion: (newQuestion) => {
-            dispatch(saveQuestion(newQuestion))
-        },
-        addQuestion: (authedUser, id) => {
-            dispatch(addQuestion(authedUser, id))
+        handleAddQuestion: (newQuestion) => {
+            dispatch(handleAddQuestion(newQuestion))
         }
     }
 
